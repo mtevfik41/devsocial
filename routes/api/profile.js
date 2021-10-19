@@ -5,6 +5,8 @@ const {check, validationResult} = require('express-validator');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const checkObjectId = require('../../middleware/checkObjectId');
+const config = require('config');
+const axios = require('axios');
 // @route   GET api/profile/me
 // @desc    Get current users profile
 // @access  Private
@@ -239,14 +241,11 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 router.get('/github/:username', async (req, res) => {
   try {
     const uri = encodeURI(
-      `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`,
+      `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get(
+        'githubClientId')}&client_secret=${config.get('githubSecret')}`,
     );
-    const headers = {
-      'user-agent': 'node.js',
-      Authorization: `token ${config.get('githubToken')}`,
-    };
 
-    const gitHubResponse = await axios.get(uri, {headers});
+    const gitHubResponse = await axios.get(uri);
     return res.json(gitHubResponse.data);
   } catch (err) {
     console.error(err.message);
