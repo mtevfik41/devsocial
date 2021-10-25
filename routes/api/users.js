@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const {check, validationResult} = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../../models/User');
 const config = require('config');
-const {use} = require('express/lib/router');
+const { use } = require('express/lib/router');
 
 // @route   POST api/users
 // @desc    Register user
@@ -19,22 +19,22 @@ router.post(
     check(
       'password',
       'Please enter  a password with 6 or more characters',
-    ).isLength({min: 6}),
+    ).isLength({ min: 6 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({errors: errors.array()});
+      return res.status(400).json({ errors: errors.array() });
     }
-    const {name, email, password} = req.body;
+    const { name, email, password } = req.body;
 
     try {
       // See if user exists
-      let user = await User.findOne({email});
+      let user = await User.findOne({ email });
       if (user) {
         return res.status(400).json({
-          errors: [{msg: 'User already exists'}],
+          errors: [{ msg: 'User already exists' }],
         });
       }
       // Get users gravatar
@@ -68,7 +68,7 @@ router.post(
         expiresIn: 360000,
       }, (err, token) => {
         if (err) throw err;
-        res.json({token});
+        res.json({ token });
       });
     } catch (err) {
       console.error(err.message);
