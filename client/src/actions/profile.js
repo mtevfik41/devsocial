@@ -25,7 +25,7 @@ export const createProfile = (formData, history, edit = false) => async (
   dispatch,
 ) => {
   try {
-    const res = await axios.post('/profile', formData);
+    const res = await axios.post('/api/profile', formData);
 
     dispatch({
       type: GET_PROFILE,
