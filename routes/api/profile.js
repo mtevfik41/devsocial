@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
 const checkObjectId = require('../../middleware/checkObjectId');
 const config = require('config');
 const axios = require('axios');
@@ -125,6 +126,7 @@ router.delete('/', auth, async (req, res) => {
     await Promise.all([
       Profile.findOneAndRemove({ user: req.user.id }),
       User.findOneAndRemove({ _id: req.user.id }),
+      Post.deleteMany({ user: req.user.id }),
     ]);
 
     res.json({ msg: 'User deleted' });
