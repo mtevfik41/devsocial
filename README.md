@@ -1,7 +1,10 @@
 # Devsocial
 
-I've created a developer social platform, similar to Linkedin, but extremely too much simpler, developed only for developers.
+I've created a developer social platform, similar to Linkedin, but extremely too much simpler, developed only for
+developers.
+
 ## Backend
+
 - Express.js
 - bcrypt npm package
 - dotenv npm package
@@ -14,6 +17,7 @@ I've created a developer social platform, similar to Linkedin, but extremely too
 <hr>
 
 ## Frontend
+
 - React.js
 - Moment
 - Redux
