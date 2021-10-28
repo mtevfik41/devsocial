@@ -6,8 +6,9 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
 const checkObjectId = require('../../middleware/checkObjectId');
-const config = require('config');
 const axios = require('axios');
+require('dotenv').config({ path: '../.env' });
+
 // @route   GET api/profile/me
 // @desc    Get current users profile
 // @access  Private
@@ -243,8 +244,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 router.get('/github/:username', async (req, res) => {
   try {
     const uri = encodeURI(
-      `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get(
-        'githubClientId')}&client_secret=${config.get('githubSecret')}`,
+      `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_SECRET}`,
     );
 
     const gitHubResponse = await axios.get(uri);
