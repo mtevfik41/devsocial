@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addEducation } from '../../actions/profile';
+import React, { Fragment, useState } from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { addEducation } from '../../actions/profile'
 
 const AddEducation = ({ addEducation, history }) => {
   const [formData, setFormData] = useState({
@@ -13,34 +13,24 @@ const AddEducation = ({ addEducation, history }) => {
     to: '',
     current: false,
     description: '',
-  });
+  })
 
-  const {
-    school,
-    degree,
-    fieldofstudy,
-    from,
-    to,
-    description,
-    current,
-  } = formData;
+  const { school, degree, fieldofstudy, from, to, description, current } = formData
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
   return (
     <Fragment>
       <h1 className="large text-primary">Add Your Education</h1>
       <p className="lead">
-        <i className="fas fa-code-branch"/> Add any school or bootcamp that you
-        have attended
+        <i className="fas fa-code-branch" /> Add any school or bootcamp that you have attended
       </p>
       <small>* = required field</small>
       <form
         className="form"
         onSubmit={e => {
-          e.preventDefault();
-          addEducation(formData, history);
+          e.preventDefault()
+          addEducation(formData, history)
         }}
       >
         <div className="form-group">
@@ -74,7 +64,7 @@ const AddEducation = ({ addEducation, history }) => {
         </div>
         <div className="form-group">
           <h4>From Date</h4>
-          <input type="date" name="from" value={from} onChange={onChange}/>
+          <input type="date" name="from" value={from} onChange={onChange} />
         </div>
         <div className="form-group">
           <p>
@@ -90,13 +80,7 @@ const AddEducation = ({ addEducation, history }) => {
         </div>
         <div className="form-group">
           <h4>To Date</h4>
-          <input
-            type="date"
-            name="to"
-            value={to}
-            onChange={onChange}
-            disabled={current}
-          />
+          <input type="date" name="to" value={to} onChange={onChange} disabled={current} />
         </div>
         <div className="form-group">
           <textarea
@@ -108,17 +92,17 @@ const AddEducation = ({ addEducation, history }) => {
             onChange={onChange}
           />
         </div>
-        <input type="submit" className="btn btn-primary my-1"/>
+        <input type="submit" className="btn btn-primary my-1" />
         <Link className="btn btn-light my-1" to="/dashboard">
           Go Back
         </Link>
       </form>
     </Fragment>
-  );
-};
+  )
+}
 
 AddEducation.propTypes = {
   addEducation: PropTypes.func.isRequired,
-};
+}
 
-export default connect(null, { addEducation })(AddEducation);
+export default connect(null, { addEducation })(AddEducation)
