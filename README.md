@@ -1,7 +1,6 @@
 # Devsocial
 
-Linkedin tarzı fakat daha sade, sadece developerlar için geliştirilmiş bir developer social platform oluşturdum. En kapsamlı ve en büyük projem olmasının sebebi bu projede bir çok teknoloji kullanmış olmam.
-
+I've created a developer social platform, similar to Linkedin, but extremely too much simpler, developed only for developers.
 ## Backend
 - Express.js
 - bcrypt npm package
@@ -14,7 +13,7 @@ Linkedin tarzı fakat daha sade, sadece developerlar için geliştirilmiş bir d
 
 <hr>
 
-##Frontend
+## Frontend
 - React.js
 - Moment
 - Redux
