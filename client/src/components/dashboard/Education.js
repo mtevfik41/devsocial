@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { deleteEducation } from '../../actions/profile'
-import formatDate from '../../utils/formatDate'
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteEducation } from '../../actions/profile';
+import formatDate from '../../utils/formatDate';
 
 const Education = ({ education, deleteEducation }) => {
   const educations = education.map(edu => (
@@ -18,7 +18,7 @@ const Education = ({ education, deleteEducation }) => {
         </button>
       </td>
     </tr>
-  ))
+  ));
 
   return (
     <Fragment>
@@ -35,12 +35,12 @@ const Education = ({ education, deleteEducation }) => {
         <tbody>{educations}</tbody>
       </table>
     </Fragment>
-  )
-}
+  );
+};
 
 Education.propTypes = {
   education: PropTypes.array.isRequired,
   deleteEducation: PropTypes.func.isRequired,
-}
+};
 
-export default connect(null, { deleteEducation })(Education)
+export default connect(null, { deleteEducation })(Education);

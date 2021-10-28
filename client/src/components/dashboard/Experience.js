@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { deleteExperience } from '../../actions/profile'
-import formatDate from '../../utils/formatDate'
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteExperience } from '../../actions/profile';
+import formatDate from '../../utils/formatDate';
 
 const Experience = ({ experience, deleteExperience }) => {
   const experiences = experience.map(exp => (
@@ -18,7 +18,7 @@ const Experience = ({ experience, deleteExperience }) => {
         </button>
       </td>
     </tr>
-  ))
+  ));
 
   return (
     <Fragment>
@@ -35,12 +35,12 @@ const Experience = ({ experience, deleteExperience }) => {
         <tbody>{experiences}</tbody>
       </table>
     </Fragment>
-  )
-}
+  );
+};
 
 Experience.propTypes = {
   experience: PropTypes.array.isRequired,
   deleteExperience: PropTypes.func.isRequired,
-}
+};
 
-export default connect(null, { deleteExperience })(Experience)
+export default connect(null, { deleteExperience })(Experience);

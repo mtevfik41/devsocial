@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Link, useRouteMatch } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { createProfile, getCurrentProfile } from '../../actions/profile'
+import React, { Fragment, useEffect, useState } from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 
 const initialState = {
   company: '',
@@ -17,29 +17,29 @@ const initialState = {
   linkedin: '',
   youtube: '',
   instagram: '',
-}
+};
 
 const ProfileForm = ({ profile: { profile, loading }, createProfile, getCurrentProfile, history }) => {
-  const [formData, setFormData] = useState(initialState)
+  const [formData, setFormData] = useState(initialState);
 
-  const creatingProfile = useRouteMatch('/create-profile')
+  const creatingProfile = useRouteMatch('/create-profile');
 
-  const [displaySocialInputs, toggleSocialInputs] = useState(false)
+  const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
-    if (!profile) getCurrentProfile()
+    if (!profile) getCurrentProfile();
     if (!loading && profile) {
-      const profileData = { ...initialState }
+      const profileData = { ...initialState };
       for (const key in profile) {
-        if (key in profileData) profileData[key] = profile[key]
+        if (key in profileData) profileData[key] = profile[key];
       }
       for (const key in profile.social) {
-        if (key in profileData) profileData[key] = profile.social[key]
+        if (key in profileData) profileData[key] = profile.social[key];
       }
-      if (Array.isArray(profileData.skills)) profileData.skills = profileData.skills.join(', ')
-      setFormData(profileData)
+      if (Array.isArray(profileData.skills)) profileData.skills = profileData.skills.join(', ');
+      setFormData(profileData);
     }
-  }, [loading, getCurrentProfile, profile])
+  }, [loading, getCurrentProfile, profile]);
 
   const {
     company,
@@ -54,14 +54,14 @@ const ProfileForm = ({ profile: { profile, loading }, createProfile, getCurrentP
     linkedin,
     youtube,
     instagram,
-  } = formData
+  } = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
-    e.preventDefault()
-    createProfile(formData, history, profile ? true : false)
-  }
+    e.preventDefault();
+    createProfile(formData, history, profile ? true : false);
+  };
 
   return (
     <Fragment>
@@ -159,17 +159,17 @@ const ProfileForm = ({ profile: { profile, loading }, createProfile, getCurrentP
         </Link>
       </form>
     </Fragment>
-  )
-}
+  );
+};
 
 ProfileForm.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   profile: state.profile,
-})
+});
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(ProfileForm)
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(ProfileForm);

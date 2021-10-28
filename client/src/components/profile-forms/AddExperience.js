@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { addExperience } from '../../actions/profile'
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addExperience } from '../../actions/profile';
 
 const AddExperience = ({ addExperience, history }) => {
   const [formData, setFormData] = useState({
@@ -13,11 +13,11 @@ const AddExperience = ({ addExperience, history }) => {
     to: '',
     current: false,
     description: '',
-  })
+  });
 
-  const { company, title, location, from, to, current, description } = formData
+  const { company, title, location, from, to, current, description } = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   return (
     <Fragment>
@@ -29,8 +29,8 @@ const AddExperience = ({ addExperience, history }) => {
       <form
         className="form"
         onSubmit={e => {
-          e.preventDefault()
-          addExperience(formData, history)
+          e.preventDefault();
+          addExperience(formData, history);
         }}
       >
         <div className="form-group">
@@ -54,7 +54,7 @@ const AddExperience = ({ addExperience, history }) => {
               checked={current}
               value={current}
               onChange={() => {
-                setFormData({ ...formData, current: !current })
+                setFormData({ ...formData, current: !current });
               }}
             />{' '}
             Current Job
@@ -80,11 +80,11 @@ const AddExperience = ({ addExperience, history }) => {
         </Link>
       </form>
     </Fragment>
-  )
-}
+  );
+};
 
 AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired,
-}
+};
 
-export default connect(null, { addExperience })(AddExperience)
+export default connect(null, { addExperience })(AddExperience);
